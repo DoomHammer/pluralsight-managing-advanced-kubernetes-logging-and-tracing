@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-fake-nginx-1
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - echo
+    - '{"host": "8.8.8.8", "user_agent": "Opera/12.0", "method": "GET", "path": "/"}'
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-fake-nginx-2
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - echo
+    - '{"host": "1.1.1.1", "user_agent": "Opera/12.0", "method": "GET", "path": "/"}'
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-fake-nginx-3
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - echo
+    - '{"host": "199.85.127.10", "user_agent": "Opera/12.0", "method": "GET", "path": "/"}'
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-fake-nginx-4
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - echo
+    - '{"host": "208.67.222.222 ", "user_agent": "Opera/12.0", "method": "GET", "path": "/"}'

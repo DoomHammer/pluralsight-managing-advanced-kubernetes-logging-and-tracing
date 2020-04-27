@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: run-controller
+  name: run-controller
+spec:
+  selector:
+    matchLabels:
+      app: run-controller
+  template:
+    metadata:
+      labels:
+        app: run-controller
+    spec:
+      containers:
+      - env:
+        # This should point to your Redis service name
+        - name: REDIS_HOST
+          value: impressive-spaniel-redis-master
+        # This should be a passwordused by Redis
+        - name: REDIS_PASSWORD
+          value: fQJIviDfk7
+        image: docker.io/doomhammer/carvedrock:run-controller
+        imagePullPolicy: Always
+        name: run-controller
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always

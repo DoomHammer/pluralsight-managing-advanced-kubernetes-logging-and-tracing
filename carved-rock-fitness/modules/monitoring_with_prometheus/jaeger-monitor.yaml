@@ -1,0 +1,31 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jaeger-http
+  labels:
+    prometheus: brown-liger-prometheus-ope-prometheus
+spec:
+  selector:
+    matchLabels:
+      name: jaeger-operator
+  namespaceSelector:
+    matchNames:
+    - observability
+  endpoints:
+    - port: http-metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jaeger-cr
+  labels:
+    prometheus: brown-liger-prometheus-ope-prometheus
+spec:
+  selector:
+    matchLabels:
+      name: jaeger-operator
+  namespaceSelector:
+    matchNames:
+    - observability
+  endpoints:
+    - port: http-metrics

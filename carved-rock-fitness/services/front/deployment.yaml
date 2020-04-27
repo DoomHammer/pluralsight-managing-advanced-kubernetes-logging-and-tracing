@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: front-end
+  name: front-end
+spec:
+  selector:
+    matchLabels:
+      app: front-end
+  template:
+    metadata:
+      labels:
+        app: front-end
+    spec:
+      containers:
+      - env:
+        - name: REACT_APP_BACKEND_URL
+          value: http://localhost:8000
+        image: docker.io/doomhammer/carvedrock:front
+        imagePullPolicy: Always
+        name: front-end
+      imagePullSecrets:
+      - name: regcred

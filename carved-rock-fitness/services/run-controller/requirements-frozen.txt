@@ -1,0 +1,15 @@
+Click==7.0
+Flask==1.1.1
+itsdangerous==1.1.0
+jaeger-client==4.1.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+opentracing==2.2.0
+prometheus-client==0.7.1
+prometheus-flask-exporter==0.11.0
+redis==3.3.11
+six==1.12.0
+threadloop==1.0.2
+thrift==0.11.0
+tornado==5.1.1
+Werkzeug==0.16.0

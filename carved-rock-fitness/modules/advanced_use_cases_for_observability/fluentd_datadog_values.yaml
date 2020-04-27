@@ -1,0 +1,81 @@
+output:
+  host: elasticsearch.kube-logging.svc.cluster.local
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    namespace: default
+    additionalLabels:
+      prometheus: mon-prometheus-operator-prometheus
+
+service:
+  ports:
+    - name: "fluentd-forward"
+      protocol: TCP
+      containerPort: 24224
+
+plugins:
+  enabled: true
+  pluginsList:
+    - fluent-plugin-geoip-filter
+    - fluent-plugin-datadog
+
+configMaps:
+  carvedrock.conf: |
+    <filter kubernetes.var.log.containers.kube-logging-fluentd**>
+      @type grep
+      <exclude>
+        key log
+        pattern /Detected ES 7/
+      </exclude>
+    </filter>
+    <filter kubernetes.var.log.containers.**jaeger-agent**>
+      @type parser
+      key_name log
+      reserve_data true
+      <parse>
+        @type json
+      </parse>
+    </filter>
+    <filter kubernetes.var.log.containers.workout-gateway**workout-gateway**>
+      @type parser
+      key_name log
+      reserve_data true
+      <parse>
+        @type json
+      </parse>
+    </filter>
+    <filter kubernetes.var.log.containers.busybox-fake-nginx**>
+      @type parser
+      key_name log
+      reserve_data true
+      <parse>
+        @type json
+      </parse>
+    </filter>
+    <filter kubernetes.var.log.containers.busybox-fake-nginx**>
+      @type geoip
+      key_name host
+    </filter>
+    <match **>
+      @type datadog
+      @id awesome_agent
+      api_key INSERT_YOUR_API_KEY
+      host tcp-intake.logs.datadoghq.eu
+      ssl_port 443
+
+      include_tag_key true
+      tag_key 'tag'
+
+      dd_source 'fluentd'
+    </match>
+    <label @ERROR>
+      <match kubernetes.var.log.containers.workout-gateway**workout-gateway**>
+        @type elasticsearch
+      </match>
+      <match **>
+        @type file
+        path /tmp/errors
+      </match>
+    </label>

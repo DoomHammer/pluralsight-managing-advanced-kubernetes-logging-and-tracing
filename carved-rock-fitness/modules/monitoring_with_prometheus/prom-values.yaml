@@ -1,0 +1,21 @@
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelector:
+        prometheus: mon-prometheus-operator-prometheus
+
+grafana:
+  adminPassword: topSecretPassw0rd
+
+prometheus-node-exporter:
+  service:
+    port: 30206
+    targetPort: 30206
+
+kubeEtcd:
+  enabled: false
+
+kubeControllerManager:
+  enabled: false
+
+kubeScheduler:
+  enabled: false

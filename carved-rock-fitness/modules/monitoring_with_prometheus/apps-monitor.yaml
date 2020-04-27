@@ -1,0 +1,31 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: workout-gateway
+  labels:
+    prometheus: mon-prometheus-operator-prometheus
+spec:
+  selector:
+    matchLabels:
+      app: workout-gateway
+  namespaceSelector:
+    matchNames:
+    - default
+  endpoints:
+    - port: web
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: run-controller
+  labels:
+    prometheus: mon-prometheus-operator-prometheus
+spec:
+  selector:
+    matchLabels:
+      app: run-controller
+  namespaceSelector:
+    matchNames:
+    - default
+  endpoints:
+    - port: web
