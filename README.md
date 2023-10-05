@@ -9,18 +9,17 @@ This repository is for the Pluralsight course Managing Advanced Kubernetes Loggi
 1. [Sample Project](#sample-project)
 1. [Errata](#errata)
 1. [Updates](#updates)
-1. [Additional Resources](#additional-resources)
 
 ## Sample Project
 
 The sample open source project used in the course demos is available at
-https://github.com/doomhammer/managing-advanced-kubernetes-logging-and-tracing/tree/master/carved-rock-fitness
+https://github.com/doomhammer/pluralsight-managing-advanced-kubernetes-logging-and-tracing/tree/master/carved-rock-fitness
 
 ## Errata
 
 *None yet*
 
-Please report course issues using the [Issues](https://github.com/DoomHammer/pluralsight-opensource-your-project-on-github/issues) page or the Pluralsight discussion page.
+Please report course issues using the [Issues](https://github.com/DoomHammer/pluralsight-managing-advanced-kubernetes-logging-and-tracing/issues) page or the Pluralsight discussion page.
 
 ## Updates
 
